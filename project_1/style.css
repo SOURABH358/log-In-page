@@ -1,0 +1,81 @@
+*,::before,::after{
+    margin : 0;
+    font-family: 'Open Sans', sans-serif;
+}
+:root{
+    font-size: 16px;
+}
+body{
+    width: 100%;
+    min-height: 100vh;
+    background: radial-gradient(rgb(240, 255, 255),#A8D8FF);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+}
+.container{
+    width: 20rem;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.084);
+    text-align: center;
+    padding: 3rem 4rem;
+}
+#header{
+    font-size: 1.25rem;
+    cursor: pointer;
+    border-bottom: 4px solid rgb(100, 149, 237);
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+}
+
+.link{
+    transition: all 0.5s;
+    font-weight: 600;
+    color: black;
+}
+.link:hover{
+    text-decoration: underline;
+}
+.active{
+    color:rgb(100, 149, 237)
+}
+.form{
+    width: 100%;
+    text-align: left;
+}
+.form__content{
+    margin: 3rem 0;   
+}
+.form label{
+    color: rgb(100, 149, 237);
+}
+.form input{
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    line-height: 2.5rem;
+}
+.form input:focus{
+    border-bottom: 1px solid black;
+}
+input[type = "password"]{
+   letter-spacing: 0.2rem;
+}
+.button{
+    width: 100%;
+    border: none;
+    background: rgb(100, 149, 237);
+    border-radius: 0.5rem;
+    color: white;
+    padding: 1rem 0;
+    letter-spacing: 0.2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+.hide{
+    display: none;
+}
