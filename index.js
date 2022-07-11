@@ -3,6 +3,9 @@ const fs = require('fs')
 const path = require('path')
 const data = require('./data.json')
 const app = express()
+require('dotenv').config()
+
+const port = process.env.PORT
 
 app.use(express.static(path.join(__dirname,'project_1')))
 app.use(express.json())
@@ -34,4 +37,6 @@ app.post('/login',(req,res)=>{
         res.json({success: true});
     })
 })
-app.listen(5000)
+app.listen(port,()=>{
+    console.log(`server is listening at ${port}`);
+})
