@@ -1,8 +1,10 @@
+
 const header = document.querySelector('#header')
 const logInForm = document.querySelector('#logIn__form');
 const signUpForm = document.querySelector('#signUp__form');
 const logInButton = document.querySelector('#logIn__button')
 const signUpButton = document.querySelector('#signUp__button')
+const msg = document.querySelector('#msg')
 
 header.addEventListener('click', (e) => {
     Array.from(header.querySelectorAll('.link')).forEach(element => {
@@ -23,18 +25,36 @@ header.addEventListener('click', (e) => {
     }
 })
 
+window.addEventListener('DOMContentLoaded',async ()=>{
+    try{
+        const {data} = await axios.get('/login');
+        console.log(data)
+    }catch(err){
+        console.log(err)
 
-signUpButton.addEventListener('click',async ()=>{
+    }
+})
+
+signUpButton.addEventListener('click',async (e)=>{
+    e.preventDefault()
     const username = document.getElementById('name')
     const email = document.getElementById('mail')
     const password = document.getElementById('pass')
-    console.log(username.value)
-    console.log(email.value)
-    console.log(password.value)
-   try{
-    const data = await axios.post('/login',{"username":username.value, "email":email.value, "password" : password.value })
-    console.log(data);
-   }catch(err){
-    console.log(err)
-   }
+    const header = {
+        'Content-type':'application/json',
+    }
+    const response = await axios.post('/login',
+        {
+        "username": username.value,
+        "email":email.value,
+        "password":password.value
+    },{
+        headers:header
+    }).then(response=>{
+        console.log(response)
+    }).catch(err=>{
+        console.log(err)
+    });
+    
 })
+

@@ -14,6 +14,25 @@ body{
     grid-template-rows: 1fr;
     place-items: center;
 }
+#msg{
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    display: none;
+    transform: translateX(-50%);
+    border-radius: 0.4rem;
+    width: 40%;
+    padding: 0.5rem 0;
+    text-align: center;
+}
+.success{
+    background-color: #90EE90;
+    display: block
+}
+.failure{
+    background-color: #FF7377;
+    display: block;
+}
 .container{
     width: 20rem;
     background-color: white;
