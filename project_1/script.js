@@ -25,36 +25,58 @@ header.addEventListener('click', (e) => {
     }
 })
 
-window.addEventListener('DOMContentLoaded',async ()=>{
-    try{
-        const {data} = await axios.get('/login');
+window.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const { data } = await axios.get('/login');
         console.log(data)
-    }catch(err){
+    } catch (err) {
         console.log(err)
 
     }
 })
 
-signUpButton.addEventListener('click',async (e)=>{
+signUpButton.addEventListener('click', async (e) => {
     e.preventDefault()
     const username = document.getElementById('name')
     const email = document.getElementById('mail')
     const password = document.getElementById('pass')
     const header = {
-        'Content-type':'application/json',
+        'Content-type': 'application/json',
     }
     const response = await axios.post('/login',
         {
-        "username": username.value,
-        "email":email.value,
-        "password":password.value
-    },{
-        headers:header
-    }).then(response=>{
-        console.log(response)
-    }).catch(err=>{
-        console.log(err)
-    });
-    
+            "username": username.value,
+            "email": email.value,
+            "password": password.value
+        }, {
+        headers: header
+    }).then(({ data }) => {
+        console.log(data);
+        msg.innerHTML = data.data;
+        msg.className = data.success?'success':'failure'
+        username.value = '';
+        email.value = '';
+        password.value = '';
+        setTimeout(1000, () => {
+            msg.className = ''
+        })
+    }).catch(error=>{
+        console.log(error);
+    })
+
 })
 
+logInButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const loginName = document.querySelector('#loginName')
+    const loginPass = document.querySelector('#loginPass')
+
+    const request = axios.post('/login/user', {
+        username: loginName.value,
+        password: loginPass
+    }).then(response => {
+        console.log(response);
+    }).catch(error => {
+        console.log(error);
+    })
+})

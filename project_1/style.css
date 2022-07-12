@@ -18,7 +18,7 @@ body{
     position: absolute;
     top: 2rem;
     left: 50%;
-    display: none;
+    display: block;
     transform: translateX(-50%);
     border-radius: 0.4rem;
     width: 40%;

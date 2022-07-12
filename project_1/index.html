@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div id = "msg"></div>
+    <div id = "msg" class = ''></div>
     <div class="container">
         <p id="header">
             <span id="sign__up" class="link active">Sign Up</span>
@@ -40,13 +40,13 @@
         <div id="logIn__form" class="hide">
             <form class="form">
                 <div class="form__content">
-                    <label id="loginName">Username</label><br />
-                    <input type="text" for="loginName" name="username" />
+                    <label id="loginUsername">Username</label><br />
+                    <input type="text" for="loginUsername" name="username" id = "loginName"/>
                 </div>
 
                 <div class="form__content">
-                    <label id="loginPass">Password</label><br />
-                    <input type="password" for="loginPass" name="password" />
+                    <label id="loginPassword">Password</label><br />
+                    <input type="password" for="loginPassword" name="password" id = "loginPass"/>
                 </div>
                 <button type='submit' class="button" id="logIn__button">Log In</button>
             </form>
