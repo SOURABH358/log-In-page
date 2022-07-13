@@ -78,8 +78,8 @@ logInButton.addEventListener('click', (e) => {
     }).then(({data}) => {
         msg.innerHTML = data.data;
         msg.className = data.success?'success':'failure'
-        username.value = '';
-        password.value = '';
+        loginName.value = '';
+        loginPass.value = '';
     }).catch(error => {
         console.log(error);
     })
