@@ -15,10 +15,10 @@ app.use(express.urlencoded({extended:false}))
 function check(req,res,next){
     let text = ''
     data.forEach(element=>{
-        if(element.username==req.body.username){
+        if(element.username===req.body.username){
             text += 'username '
         }
-        if(element.email==req.body.email){
+        if(element.email===req.body.email){
             text += 'email'
         }
     })
@@ -40,7 +40,7 @@ function auth(req,res,next){
         text += 'password'
     }
     if(text.length){
-        res.json({success: false, data: `Please provide ${text} value`})
+        res.json({success: false, data: `Please provide ${text} value(s)`})
         return ;
     }
     next();
@@ -74,23 +74,26 @@ app.post('/login',auth, check, (req,res)=>{
 })
 
 app.post('/login/user',(req,res)=>{
-    if(req.body.username==''||req.body.password==''){
+    let text = ''
+    if(req.body.username===''||req.body.password===''){
         res.json({success: false,data: 'Please provide credentials'})
     }
     else{
-        fs.readFile(path.join(__dirname,'data.json'),'utf-8',(err,data)=>{
-            if(err){
-                console.log(err);
-                return;
+        data.forEach(element=>{
+            if(element.username===req.body.username&&element.password === req.body.password){
+                res.json({success:true,data: 'successfully logged in !!!'})
             }
-            let newData = JSON.parse(data)
-            newData.forEach(element=>{
-                if(element.username===req.body.username&&element.password===req.body.password){
-                    res.send(`<h1>Welcome ${element.username}</h1>`)
-                }
-            })
-            res.send('Wrong Credentials')
+            else if(element.username===req.body.username){
+                text+= 'password'
+            }
+            else if(element.password === req.body.password){
+                text+='username'
+            }
         })
+        if(!text.length){
+            text+='username and password'
+        }
+        res.json({success: false,data: `${text} is incorrect`})
     }
     // res.send('success');
 })

@@ -18,7 +18,6 @@ body{
     position: absolute;
     top: 2rem;
     left: 50%;
-    display: block;
     transform: translateX(-50%);
     border-radius: 0.4rem;
     width: 40%;
@@ -26,12 +25,12 @@ body{
     text-align: center;
 }
 .success{
+    display: block;
     background-color: #90EE90;
-    display: block
 }
 .failure{
-    background-color: #FF7377;
     display: block;
+    background-color: #FF7377;
 }
 .container{
     width: 20rem;

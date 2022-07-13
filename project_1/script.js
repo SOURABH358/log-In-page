@@ -51,19 +51,20 @@ signUpButton.addEventListener('click', async (e) => {
         }, {
         headers: header
     }).then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         msg.innerHTML = data.data;
         msg.className = data.success?'success':'failure'
         username.value = '';
         email.value = '';
         password.value = '';
-        setTimeout(1000, () => {
-            msg.className = ''
-        })
+        
     }).catch(error=>{
         console.log(error);
     })
-
+    setTimeout(() => {
+        msg.innerHTML = ''
+        msg.className = ''
+    },2000)
 })
 
 logInButton.addEventListener('click', (e) => {
@@ -73,10 +74,17 @@ logInButton.addEventListener('click', (e) => {
 
     const request = axios.post('/login/user', {
         username: loginName.value,
-        password: loginPass
-    }).then(response => {
-        console.log(response);
+        password: loginPass.value
+    }).then(({data}) => {
+        msg.innerHTML = data.data;
+        msg.className = data.success?'success':'failure'
+        username.value = '';
+        password.value = '';
     }).catch(error => {
         console.log(error);
     })
+    setTimeout(() => {
+        msg.innerHTML = ''
+        msg.className = ''
+    },2000)
 })
