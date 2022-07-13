@@ -15,7 +15,6 @@ app.use(express.urlencoded({extended:false}))
 function check(req,res,next){
     let text = ''
     data.forEach(element=>{
-        console.log(element)
         if(element.username==req.body.username){
             text += 'username '
         }
